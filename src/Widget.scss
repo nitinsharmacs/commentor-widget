@@ -1,10 +1,19 @@
+@import './styles/variables.scss';
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: inherit;
+  font-family: sans-serif;
 }
 
 html {
   font-size: 18px;
+}
+
+.commentor-widget {
+  width: 500px;
+  > div {
+    margin: $main-padding 0;
+  }
 }

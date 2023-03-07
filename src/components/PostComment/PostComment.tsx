@@ -5,10 +5,10 @@ import PostButton from '../PostButton/PostButton';
 
 const PostComment = () => {
   return (
-    <section className='post-comment'>
+    <div className='post-comment'>
       <Input />
       <PostButton />
-    </section>
+    </div>
   );
 };
 
