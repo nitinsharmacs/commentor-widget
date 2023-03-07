@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss';
+
+.commentor-input {
+  width: 100%;
+  > div {
+    padding: 0.3rem 0.5rem;
+    border: 2px solid $border-color;
+    border-radius: $border-radius;
+  }
+
+  textarea {
+    color: $font-color;
+  }
+}
