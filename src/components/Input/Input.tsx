@@ -1,8 +1,11 @@
 import './Input.scss';
 
 import TextField from '@mui/material/TextField';
+import {useCallback, useState} from 'react';
 
-const Input = (): JSX.Element => {
+const Input = (props: InputProps): JSX.Element => {
+  const [inputValue, setInputValue] = useState('');
+
   return (
     <TextField
       classes={{root: 'commentor-input'}}
@@ -13,6 +16,11 @@ const Input = (): JSX.Element => {
         disableUnderline: true,
       }}
       variant="standard"
+      value={inputValue}
+      onChange={e => {
+        setInputValue(e.target.value);
+        props.onChange(e.target.value);
+      }}
     />
   );
 };

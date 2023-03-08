@@ -1,0 +1,3 @@
+interface PostButtonProps {
+  onPost: Function;
+}
