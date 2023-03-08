@@ -1,12 +1,12 @@
-import { IconButton } from '@mui/material';
+import {IconButton} from '@mui/material';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReply } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faReply} from '@fortawesome/free-solid-svg-icons';
 
-const ReplyButton = () => {
+const ReplyButton = (): JSX.Element => {
   return (
-    <div className='reply-btn'>
-      <IconButton title='reply'>
+    <div className="reply-btn">
+      <IconButton title="reply">
         <FontAwesomeIcon icon={faReply} />
       </IconButton>
     </div>
