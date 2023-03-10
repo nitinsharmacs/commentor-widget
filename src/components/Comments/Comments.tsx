@@ -1,4 +1,5 @@
 import CommentItem from '../CommentItem/CommentItem';
+import './Comments.scss';
 
 const Comments = (props: CommentsProps): JSX.Element => {
   return (

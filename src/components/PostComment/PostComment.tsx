@@ -2,11 +2,11 @@ import './PostComment.scss';
 
 import Input from '../Input/Input';
 import PostButton from '../PostButton/PostButton';
-import {createRef, useCallback, useRef, useState} from 'react';
+import {useRef, useCallback, useState} from 'react';
 
 const PostComment = (props: PostCommentProps): JSX.Element => {
   const [comment, setComment] = useState('');
-  const ref = createRef<CanClearInput>();
+  const ref = useRef<CanClearInput>(null);
 
   const commentHandler = useCallback((comment: string) => {
     setComment(comment);

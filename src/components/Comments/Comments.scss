@@ -1,0 +1,7 @@
+@import '../../styles/variables.scss';
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  row-gap: $main-padding;
+}
