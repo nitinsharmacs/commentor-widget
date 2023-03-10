@@ -1,4 +1,3 @@
-import PaperPlan from '../../assets/icons/paper-plan';
 import './PostButton.scss';
 
 import IconButton from '@mui/material/IconButton';

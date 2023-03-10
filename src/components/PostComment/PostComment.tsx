@@ -2,20 +2,26 @@ import './PostComment.scss';
 
 import Input from '../Input/Input';
 import PostButton from '../PostButton/PostButton';
-import {useCallback, useState} from 'react';
+import {createRef, useCallback, useRef, useState} from 'react';
 
-const PostComment = (): JSX.Element => {
+const PostComment = (props: PostCommentProps): JSX.Element => {
   const [comment, setComment] = useState('');
+  const ref = createRef<CanClearInput>();
+
   const commentHandler = useCallback((comment: string) => {
     setComment(comment);
   }, []);
 
   return (
     <div className="post-comment">
-      <Input placeholder="What's on your mind?" onChange={commentHandler} />
+      <Input
+        ref={ref}
+        placeholder="What's on your mind?"
+        onChange={commentHandler}
+      />
       <PostButton
         onPost={() => {
-          alert(comment);
+          if (ref.current) ref.current.clear();
         }}
       />
     </div>

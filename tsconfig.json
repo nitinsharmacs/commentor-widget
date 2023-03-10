@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "typeRoots": ["./types"],
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "useUnknownInCatchVariables": true
   }
 }

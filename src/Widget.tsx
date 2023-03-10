@@ -1,8 +1,9 @@
+import {useState} from 'react';
 import Comments from './components/Comments/Comments';
 import PostComment from './components/PostComment/PostComment';
 import './Widget.scss';
 
-const comments: CommentInfo[] = [
+const commentsData: CommentInfo[] = [
   {
     id: '1212313',
     message:
@@ -21,9 +22,26 @@ const comments: CommentInfo[] = [
 ];
 
 const Widget = (): JSX.Element => {
+  const [comments, addComment] = useState(commentsData);
+
   return (
     <div className="commentor-widget">
-      <PostComment />
+      <PostComment
+        onComment={(comment: string): void =>
+          addComment((comments: CommentInfo[]) => {
+            return [
+              {
+                id: '3434',
+                message: comment,
+                timestamp: new Date(),
+                likes: 0,
+                username: 'ananymous',
+              },
+              ...comments,
+            ];
+          })
+        }
+      />
       <Comments comments={comments} />
     </div>
   );
