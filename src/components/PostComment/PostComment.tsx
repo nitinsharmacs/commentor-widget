@@ -21,6 +21,7 @@ const PostComment = (props: PostCommentProps): JSX.Element => {
       />
       <PostButton
         onPost={() => {
+          props.onComment(comment);
           if (ref.current) ref.current.clear();
         }}
       />

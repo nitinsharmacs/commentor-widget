@@ -1,7 +1,11 @@
-import {useState} from 'react';
+import {useReducer, useState} from 'react';
 import Comments from './components/Comments/Comments';
 import PostComment from './components/PostComment/PostComment';
 import './Widget.scss';
+
+enum ACTION {
+  ADD_NEW,
+}
 
 const commentsData: CommentInfo[] = [
   {
@@ -21,28 +25,48 @@ const commentsData: CommentInfo[] = [
   },
 ];
 
+interface state {
+  comments: CommentInfo[];
+}
+
+const initialState: state = {comments: []};
+
+type ACTIONTYPE = {type: ACTION; payload: CommentInfo};
+
+const reducer = (
+  state: typeof initialState,
+  action: ACTIONTYPE
+): typeof initialState => {
+  switch (action.type) {
+    case ACTION.ADD_NEW: {
+      const comments: CommentInfo[] = [action.payload, ...state.comments];
+      return {comments};
+    }
+    default:
+      return state;
+  }
+};
+
 const Widget = (): JSX.Element => {
-  const [comments, addComment] = useState(commentsData);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="commentor-widget">
       <PostComment
-        onComment={(comment: string): void =>
-          addComment((comments: CommentInfo[]) => {
-            return [
-              {
-                id: '3434',
-                message: comment,
-                timestamp: new Date(),
-                likes: 0,
-                username: 'ananymous',
-              },
-              ...comments,
-            ];
-          })
-        }
+        onComment={(comment: string): void => {
+          dispatch({
+            type: ACTION.ADD_NEW,
+            payload: {
+              id: '3434',
+              message: comment,
+              timestamp: new Date(),
+              likes: 0,
+              username: 'ananymous',
+            },
+          });
+        }}
       />
-      <Comments comments={comments} />
+      <Comments comments={state.comments} />
     </div>
   );
 };
