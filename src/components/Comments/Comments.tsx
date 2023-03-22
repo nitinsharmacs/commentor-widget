@@ -5,8 +5,8 @@ const Comments = (props: CommentsProps): JSX.Element => {
   return (
     <section className="comments">
       {props.comments.map(
-        (comment): JSX.Element => (
-          <CommentItem key={comment.id} {...comment} />
+        (comment, index): JSX.Element => (
+          <CommentItem key={comment.id + index} {...comment} />
         )
       )}
     </section>

@@ -1,10 +1,12 @@
-import {useReducer, useState} from 'react';
+import {useEffect, useReducer, useState} from 'react';
+import API from './api';
 import Comments from './components/Comments/Comments';
 import PostComment from './components/PostComment/PostComment';
 import './Widget.scss';
 
 enum ACTION {
   ADD_NEW,
+  STORE,
 }
 
 const commentsData: CommentInfo[] = [
@@ -31,7 +33,7 @@ interface state {
 
 const initialState: state = {comments: []};
 
-type ACTIONTYPE = {type: ACTION; payload: CommentInfo};
+type ACTIONTYPE = {type: ACTION; payload: CommentInfo[]};
 
 const reducer = (
   state: typeof initialState,
@@ -39,8 +41,11 @@ const reducer = (
 ): typeof initialState => {
   switch (action.type) {
     case ACTION.ADD_NEW: {
-      const comments: CommentInfo[] = [action.payload, ...state.comments];
+      const comments: CommentInfo[] = [...action.payload, ...state.comments];
       return {comments};
+    }
+    case ACTION.STORE: {
+      return {comments: action.payload};
     }
     default:
       return state;
@@ -50,19 +55,27 @@ const reducer = (
 const Widget = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    API.fetch_comments('getting-started-with-docker').then(({comments}) => {
+      dispatch({type: ACTION.STORE, payload: comments});
+    });
+  }, []);
+
   return (
     <div className="commentor-widget">
       <PostComment
         onComment={(comment: string): void => {
           dispatch({
             type: ACTION.ADD_NEW,
-            payload: {
-              id: '3434',
-              message: comment,
-              timestamp: new Date(),
-              likes: 0,
-              username: 'ananymous',
-            },
+            payload: [
+              {
+                id: '3434',
+                message: comment,
+                timestamp: new Date(),
+                likes: 0,
+                username: 'ananymous',
+              },
+            ],
           });
         }}
       />
