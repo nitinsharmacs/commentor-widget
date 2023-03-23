@@ -4,10 +4,9 @@ import Comments from './components/Comments/Comments';
 import PostComment from './components/PostComment/PostComment';
 import './Widget.scss';
 
-enum ACTION {
-  ADD_NEW,
-  STORE,
-}
+import {ACTION} from './store/actions';
+import reducer from './store/reducer';
+import {initialState} from './store/store';
 
 const commentsData: CommentInfo[] = [
   {
@@ -26,31 +25,6 @@ const commentsData: CommentInfo[] = [
     username: 'anyonmous',
   },
 ];
-
-interface state {
-  comments: CommentInfo[];
-}
-
-const initialState: state = {comments: []};
-
-type ACTIONTYPE = {type: ACTION; payload: CommentInfo[]};
-
-const reducer = (
-  state: typeof initialState,
-  action: ACTIONTYPE
-): typeof initialState => {
-  switch (action.type) {
-    case ACTION.ADD_NEW: {
-      const comments: CommentInfo[] = [...action.payload, ...state.comments];
-      return {comments};
-    }
-    case ACTION.STORE: {
-      return {comments: action.payload};
-    }
-    default:
-      return state;
-  }
-};
 
 const Widget = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
