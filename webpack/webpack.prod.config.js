@@ -12,6 +12,13 @@ module.exports = {
     path: path.resolve('./build'),
     clean: true,
     publicPath: '',
+    library: {
+      name: {
+        root: 'Commentor',
+        commonjs: 'commentor',
+      },
+      type: 'umd',
+    },
   },
   resolve: {
     extensions: ['.wasm', '.ts', '.tsx', '.mjs', '.cjs', '.js', '.json'],

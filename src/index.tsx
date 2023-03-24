@@ -11,4 +11,10 @@ if (!widgetContainer) {
 
 const root = ReactDOM.createRoot(widgetContainer);
 
-root.render(<Widget />);
+const Commentor = {
+  init: (topicId: string) => {
+    root.render(<Widget />);
+  },
+};
+
+export default Commentor;

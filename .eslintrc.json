@@ -1,6 +1,14 @@
 {
   "extends": "./node_modules/gts/",
   "rules": {
-    "node/no-unpublished-import": "off"
+    "node/no-unpublished-import": "off",
+    "node/no-unpublished-require": [
+      "warn",
+      {
+        "allowModules": ["mini-css-extract-plugin", "html-webpack-plugin"],
+        "convertPath": null,
+        "tryExtensions": [".js", ".json", ".node"]
+      }
+    ]
   }
 }
