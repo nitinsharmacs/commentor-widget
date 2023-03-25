@@ -16,6 +16,7 @@ module.exports = {
     library: {
       name: 'Commentor',
       type: 'umd',
+      export: 'default',
     },
   },
   resolve: {

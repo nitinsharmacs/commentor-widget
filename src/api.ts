@@ -31,6 +31,7 @@ const API = {
 
       return res.json();
     }),
+  health: () => fetch(COMMENTOR_SERVICE_URL + '/health'),
 };
 
 export default API;

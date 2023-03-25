@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import API from './api';
 import Widget from './Widget';
 
 const widgetContainer = document.getElementById('commentor');
@@ -11,8 +12,16 @@ if (!widgetContainer) {
 
 const root = ReactDOM.createRoot(widgetContainer);
 
-export const Commentor = {
-  init: (topicId: string) => {
-    root.render(<Widget />);
+const Commentor = {
+  init: (heading: string, topicId: string) => {
+    API.health().then(res => {
+      if (res.status === 200) {
+        return root.render(<Widget heading={heading} topicId={topicId} />);
+      }
+
+      throw new Error('Commentor Service is not healthy');
+    });
   },
 };
+
+export default Commentor;

@@ -1,11 +1,11 @@
 @import '../../styles/variables.scss';
 
 .comment-item {
-  max-width: 500px;
+  width: 100%;
   padding: $main-padding;
-  border: 2px solid $border-color;
+  border: 2px solid var(--border);
   border-radius: $border-radius;
-  background-color: $main-bg-color;
+  background-color: var(--theme);
 }
 
 .comment-item-header {
@@ -46,6 +46,6 @@
   column-gap: $main-padding;
   button {
     font-size: 1rem;
-    color: $font-color;
+    color: var(--primary);
   }
 }

@@ -1,3 +1,3 @@
 import './Widget.scss';
-declare const Widget: () => JSX.Element;
+declare const Widget: (props: WidgetProps) => JSX.Element;
 export default Widget;

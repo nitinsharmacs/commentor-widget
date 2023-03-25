@@ -7,11 +7,13 @@ import './Widget.scss';
 import {ACTION} from './store/actions';
 import reducer from './store/reducer';
 import {initialState} from './store/store';
+import Heading from './components/Heading/Heading';
 
-const Widget = (): JSX.Element => {
+const Widget = (props: WidgetProps): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const onCommentHandler = useCallback((comment: string): void => {
-    API.add_comment('getting-started-with-docker', comment)
+    API.add_comment(props.topicId, comment)
       .then(res => {
         dispatch({
           type: ACTION.ADD_NEW,
@@ -30,13 +32,14 @@ const Widget = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    API.fetch_comments('getting-started-with-docker').then(({comments}) => {
+    API.fetch_comments(props.topicId).then(({comments}) => {
       dispatch({type: ACTION.STORE, payload: comments});
     });
   }, []);
 
   return (
     <div className="commentor-widget">
+      <Heading text={props.heading} />
       <PostComment onComment={onCommentHandler} />
       <Comments comments={state.comments} />
     </div>

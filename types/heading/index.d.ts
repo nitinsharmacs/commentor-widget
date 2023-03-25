@@ -1,0 +1,3 @@
+interface HeadingProps {
+  text: string;
+}

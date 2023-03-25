@@ -1,3 +1,4 @@
-export declare const Commentor: {
-    init: (topicId: string) => void;
+declare const Commentor: {
+    init: (heading: string, topicId: string) => void;
 };
+export default Commentor;
