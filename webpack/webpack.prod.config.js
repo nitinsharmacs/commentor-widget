@@ -15,7 +15,6 @@ module.exports = {
     library: {
       name: {
         root: 'Commentor',
-        commonjs: 'commentor',
       },
       type: 'umd',
     },
