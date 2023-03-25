@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 const plugins = [new MiniCssExtractPlugin({filename: 'commentor.css'})];
@@ -13,9 +14,7 @@ module.exports = {
     clean: true,
     publicPath: '',
     library: {
-      name: {
-        root: 'Commentor',
-      },
+      name: 'Commentor',
       type: 'umd',
     },
   },
@@ -24,7 +23,10 @@ module.exports = {
   },
   plugins,
   mode: 'production',
-  optimization: {},
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
   module: {
     rules: [
       {

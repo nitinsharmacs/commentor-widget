@@ -1,9 +1,9 @@
 import './LikeButton.scss';
 
-import {IconButton} from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faThumbsUp} from '@fortawesome/free-solid-svg-icons';
+import {faThumbsUp} from '@fortawesome/free-solid-svg-icons/faThumbsUp';
 
 const LikeButton = (props: LikeButtonProps): JSX.Element => {
   return (
